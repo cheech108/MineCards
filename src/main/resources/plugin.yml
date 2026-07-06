@@ -7,3 +7,7 @@ api-version: '26.1.2'
 load: POSTWORLD
 
 authors: [ Frank D, Matt B ]
+
+commands:
+  givepack:
+    description: gives the player a pack
