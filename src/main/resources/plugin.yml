@@ -1,0 +1,9 @@
+name: MineCards
+description: $description
+version: '${version}'
+
+main: dev.cheech.MineCards
+api-version: '26.2'
+load: POSTWORLD
+
+authors: [ Frank D, Matt B ]
