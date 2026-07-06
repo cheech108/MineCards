@@ -11,6 +11,6 @@ public final class MineCards extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        // Plugin shutdown logic. This is when frank goes sleepy go night night.
     }
 }
