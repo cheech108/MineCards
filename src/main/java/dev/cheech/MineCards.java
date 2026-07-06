@@ -7,7 +7,7 @@ public final class MineCards extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        Bukkit.getPluginManager().registerEvents(new InteractListener(), this);
+        getServer().getPluginManager().registerEvents(new pack_open(), this);
     }
 
     @Override
