@@ -6,7 +6,8 @@ public final class MineCards extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
+        // Plugin startup login
+        new PackManager(getDataFolder());
         getServer().getPluginManager().registerEvents(new PackOpen(), this);
     }
 }
