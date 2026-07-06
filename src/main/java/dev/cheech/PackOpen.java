@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
-public class pack_open implements Listener {
+public class PackOpen implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
