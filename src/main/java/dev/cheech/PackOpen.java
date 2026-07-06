@@ -1,10 +1,13 @@
 package dev.cheech;
 
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataType;
 
 public class PackOpen implements Listener {
 
@@ -14,10 +17,16 @@ public class PackOpen implements Listener {
         if (event.getHand() == EquipmentSlot.OFF_HAND) {
             return;
         }
-        Bukkit.getServer().getConsoleSender().sendMessage("test");
         // 2. Check if the action is a right-click
-        if (event.getAction().isRightClick()) {
-            Bukkit.getServer().getConsoleSender().sendMessage("rclick!");
+        if (!event.getAction().isRightClick() || !event.hasItem()) {
+            return;
+        }
+        ItemStack item = event.getItem();
+        NamespacedKey key = new NamespacedKey(MineCards.getPluginObj(), "pack_name");
+        if (item.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.STRING)) {
+            // Get the data
+            String value = item.getItemMeta().getPersistentDataContainer().get(key, PersistentDataType.STRING);
+            event.getPlayer().sendMessage("Opened pack: "+value);
         }
     }
 }
