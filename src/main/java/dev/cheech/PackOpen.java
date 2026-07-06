@@ -26,6 +26,11 @@ public class PackOpen implements Listener {
         if (item.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.STRING)) {
             // Get the data
             String value = item.getItemMeta().getPersistentDataContainer().get(key, PersistentDataType.STRING);
+            ItemStack drop = PackManager.getDrop(value);
+            if (drop == null){
+                event.getPlayer().sendMessage("Invalid Pack");
+                return;
+            }
             event.getPlayer().sendMessage("Opened pack: "+value);
         }
     }
