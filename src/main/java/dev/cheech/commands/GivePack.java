@@ -2,6 +2,7 @@ package dev.cheech.commands;
 
 import dev.cheech.MineCards;
 import dev.cheech.PackManager;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -28,6 +29,7 @@ public class GivePack implements TabExecutor {
         NamespacedKey key = new NamespacedKey(MineCards.getPluginObj(), "pack_name");
         // 2. Set Data (e.g., String, Integer, Byte)
         meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, args[1]);
+        meta.itemName(MiniMessage.miniMessage().deserialize(args[1]));
         // 3. Apply and Give
         itemStack.setItemMeta(meta);
         Bukkit.getPlayer(args[0]).getInventory().addItem(itemStack);

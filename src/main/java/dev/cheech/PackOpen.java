@@ -31,7 +31,10 @@ public class PackOpen implements Listener {
                 event.getPlayer().sendMessage("Invalid Pack");
                 return;
             }
-            event.getPlayer().sendMessage("Opened pack: "+value);
+            event.getItem().subtract(1);
+            event.getPlayer().getInventory().addItem(PackManager.getDrop(value));
+            event.getPlayer().getInventory().addItem(PackManager.getDrop(value));
+            event.getPlayer().getInventory().addItem(PackManager.getDrop(value));
         }
     }
 }
