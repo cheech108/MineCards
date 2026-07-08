@@ -77,10 +77,16 @@ public class PackManager {
         } else {
             message = MiniMessage.miniMessage().deserialize("<" + color + ">" + itemName);
         }
-        Component lore = MiniMessage.miniMessage().deserialize("A "+"<"+color+">"+rarityName +  " trading card");
+        Component lore = MiniMessage.miniMessage().deserialize("<white>A "+"<"+color+">"+rarityName +  " <white>trading card");
         meta.itemName(message);
         meta.lore(List.of(lore));
         ret.setItemMeta(meta);
         return ret;
+    }
+    public static Map<String, Pack.Rarity> getCards(String packName){
+        return packs.get(packName).getRarityMap();
+    }
+    public static boolean packExists(String packName){
+        return packs.containsKey(packName);
     }
 }

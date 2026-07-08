@@ -1,5 +1,6 @@
 package dev.cheech;
 
+import dev.cheech.commands.DisplayPack;
 import dev.cheech.commands.GivePack;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,7 +14,9 @@ public final class MineCards extends JavaPlugin {
         // Plugin startup login
         PackManager.initialize(getDataFolder());
         getServer().getPluginManager().registerEvents(new PackOpen(), this);
+        getServer().getPluginManager().registerEvents(new GuiHandler(), this);
         Objects.requireNonNull(getCommand("givepack")).setExecutor(new GivePack());
+        Objects.requireNonNull(getCommand("displaypack")).setExecutor(new DisplayPack());
         instance = this;
     }
 

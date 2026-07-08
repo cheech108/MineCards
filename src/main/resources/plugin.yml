@@ -8,6 +8,17 @@ load: POSTWORLD
 
 authors: [ Frank D, Matt B ]
 
+permissions:
+  minepacks.admin:
+    description: Allows access to the admin command.
+    default: op
+
 commands:
   givepack:
     description: gives the player a pack
+    usage: /givepack [player] [packname]
+    permission: minepacks.admin
+    permission-message: §cYou do not have permission to execute this command!
+  displaypack:
+    description: shows the potential contents of a pack to the player
+    usage: /givepack [packname]

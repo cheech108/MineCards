@@ -50,4 +50,5 @@ public class Pack {
     public Rarity getRarity(String name){
         return rarities.get(name);
     }
+    public Map<String, Rarity> getRarityMap(){return rarities;}
 }
