@@ -19,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GivePack implements TabExecutor {
     @Override
@@ -32,7 +33,7 @@ public class GivePack implements TabExecutor {
         meta.itemName(MiniMessage.miniMessage().deserialize(args[1]));
         // 3. Apply and Give
         itemStack.setItemMeta(meta);
-        Bukkit.getPlayer(args[0]).getInventory().addItem(itemStack);
+        Objects.requireNonNull(Bukkit.getPlayer(args[0])).getInventory().addItem(itemStack);
         return true;
     }
 
@@ -44,8 +45,7 @@ public class GivePack implements TabExecutor {
 
             for (Player player : Bukkit.getOnlinePlayers()) {
                 //check if player is a player, if they are not we don't need to restrict the list.
-                if (sender instanceof Player) {
-                    Player sendingPlayer = (Player) sender;
+                if (sender instanceof Player sendingPlayer) {
                     if (sendingPlayer.canSee(player)) {
                         playerNames.add(player.getName());
                     }
