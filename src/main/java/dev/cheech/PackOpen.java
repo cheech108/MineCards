@@ -1,5 +1,7 @@
 package dev.cheech;
 
+import net.kyori.adventure.key.Key;
+import net.kyori.adventure.sound.Sound;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -35,6 +37,7 @@ public class PackOpen implements Listener {
             }
             assert event.getItem() != null;
             event.getItem().subtract(1);
+            event.getPlayer().playSound(Sound.sound(Key.key("item.hoe.till"), Sound.Source.PLAYER, 1f, 1f));
             event.getPlayer().getInventory().addItem(Objects.requireNonNull(PackManager.getDrop(value)));
             event.getPlayer().getInventory().addItem(Objects.requireNonNull(PackManager.getDrop(value)));
             event.getPlayer().getInventory().addItem(Objects.requireNonNull(PackManager.getDrop(value)));
