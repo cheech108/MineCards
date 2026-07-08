@@ -22,25 +22,27 @@ import static org.bukkit.Registry.MATERIAL;
 public class PackManager {
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     static File dataFolder;
+    private static List<Pack> packs = new ArrayList<Pack>();
 
     public PackManager(File dF) {
         dataFolder = dF;
         if (!dataFolder.exists()) dataFolder.mkdirs();
-    }
-
-    public static List<String> getPacks() {
         File[] files = dataFolder.listFiles();
-        if (files == null) return List.of();
-        List<String> retList = new ArrayList<>();
         for (File curFile : files) {
             try (FileReader reader = new FileReader(curFile)) {
-                JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
-                retList.add(jsonObject.get("Name").getAsString());
+                packs.add(new Pack(curFile));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-        return retList;
+    }
+
+    public static List<String> getPacks() {
+        List<String> ret = null;
+        for (Pack i : packs){
+            ret.add(i.getName());
+        }
+        return ret;
     }
 
     public static ItemStack getDrop(String packName) {
