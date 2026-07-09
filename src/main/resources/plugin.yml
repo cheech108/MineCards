@@ -22,3 +22,8 @@ commands:
   displaypack:
     description: shows the potential contents of a pack to the player
     usage: /givepack [packname]
+  reloadpacks:
+    description: reloads all the packs
+    usage: /reloadpacks
+    permission: minepacks.admin
+    permission-message: §cYou do not have permission to execute this command!

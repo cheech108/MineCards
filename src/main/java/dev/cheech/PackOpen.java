@@ -10,6 +10,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class PackOpen implements Listener {
@@ -39,7 +40,10 @@ public class PackOpen implements Listener {
             event.getItem().subtract(1);
             event.getPlayer().playSound(Sound.sound(Key.key("item.hoe.till"), Sound.Source.PLAYER, 1f, 1f));
             for (int i = 0; i < size; i++) {
-                event.getPlayer().getInventory().addItem(Objects.requireNonNull(PackManager.getDrop(value)));
+                HashMap<Integer, ItemStack> leftover =  event.getPlayer().getInventory().addItem(Objects.requireNonNull(PackManager.getDrop(value)));
+                for (var entry : leftover.entrySet()) {
+                    event.getPlayer().getWorld().dropItem(event.getPlayer().getLocation(),entry.getValue());
+                }
             }
         }
     }
