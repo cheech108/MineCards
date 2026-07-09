@@ -49,16 +49,16 @@ public class PackManager {
             x++;
         }
         int idx = 0;
-        String rarityName = null;
         for (double r = Math.random() * totalWeight; idx < rarities.size() - 1; ++idx) {
             r -= raritiesList[idx].weight();
-            rarityName = raritiesList[idx].name();
             if (r <= 0.0) break;
         }
         //get rarity object
         Pack.Rarity finIDrops = raritiesList[idx];
         //get drop list
         List<String> dropPool = finIDrops.drops();
+        //get name of rarity
+        String rarityName = finIDrops.name();
         //get color
         String color = finIDrops.color();
         //roll for item
@@ -77,7 +77,10 @@ public class PackManager {
         } else {
             message = MiniMessage.miniMessage().deserialize("<" + color + ">" + itemName);
         }
-        Component lore = MiniMessage.miniMessage().deserialize("<white>A "+"<"+color+">"+rarityName +  " <white>trading card");
+        // get if the starting letter is a vowel.
+        String vowels = "aeiouAEIOU";
+        String prefix = (vowels.contains(rarityName.substring(0, 1))) ? "An" : "A";
+        Component lore = MiniMessage.miniMessage().deserialize("<white>"+ prefix +" <"+color+">"+rarityName +  " <white>trading card");
         meta.itemName(message);
         meta.lore(List.of(lore));
         ret.setItemMeta(meta);
@@ -88,5 +91,8 @@ public class PackManager {
     }
     public static boolean packExists(String packName){
         return packs.containsKey(packName);
+    }
+    public static String getPackDisplayName(String pN){
+        return packs.get(pN).getDisplayName();
     }
 }
