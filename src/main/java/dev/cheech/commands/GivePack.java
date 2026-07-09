@@ -24,7 +24,7 @@ import java.util.Objects;
 public class GivePack implements TabExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-        if (!PackManager.packExists(args[1])){
+        if (PackManager.packNoExists(args[1])){
             sender.sendMessage("Invalid pack!");
             return false;
         }

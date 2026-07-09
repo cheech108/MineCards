@@ -18,13 +18,15 @@ public class Pack {
     private final String name;
     private final String displayName;
     private final Map<String, Rarity> rarities = new HashMap<>();
+    private final int cardsGiven;
 
     public Pack(File file){
         try (FileReader reader = new FileReader(file)) {
             JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
             this.name = file.getName().substring(0,file.getName().length()-5);
             this.displayName = jsonObject.get("DisplayName").getAsString();
-            JsonObject curRarities = jsonObject.get("rarities").getAsJsonObject();
+            this.cardsGiven = jsonObject.get("cardsGiven") != null ? jsonObject.get("cardsGiven").getAsInt() : 3;
+            JsonObject curRarities = jsonObject.get("Rarities").getAsJsonObject();
             Set<String> nameRarities = curRarities.keySet();
             Type listType = new TypeToken<List<String>>(){}.getType();
             for (String i : nameRarities){
@@ -51,4 +53,7 @@ public class Pack {
         return rarities.get(name);
     }
     public Map<String, Rarity> getRarityMap(){return rarities;}
+    public int getCardsGiven(){
+        return cardsGiven;
+    }
 }

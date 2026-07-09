@@ -30,17 +30,17 @@ public class PackOpen implements Listener {
         if (item.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.STRING)) {
             // Get the data
             String value = item.getItemMeta().getPersistentDataContainer().get(key, PersistentDataType.STRING);
-            ItemStack drop = PackManager.getDrop(value);
-            if (drop == null){
+            if (PackManager.packNoExists(value)){
                 event.getPlayer().sendMessage("Invalid Pack");
                 return;
             }
             assert event.getItem() != null;
+            int size = PackManager.getPackSize(value);
             event.getItem().subtract(1);
             event.getPlayer().playSound(Sound.sound(Key.key("item.hoe.till"), Sound.Source.PLAYER, 1f, 1f));
-            event.getPlayer().getInventory().addItem(Objects.requireNonNull(PackManager.getDrop(value)));
-            event.getPlayer().getInventory().addItem(Objects.requireNonNull(PackManager.getDrop(value)));
-            event.getPlayer().getInventory().addItem(Objects.requireNonNull(PackManager.getDrop(value)));
+            for (int i = 0; i < size; i++) {
+                event.getPlayer().getInventory().addItem(Objects.requireNonNull(PackManager.getDrop(value)));
+            }
         }
     }
 }

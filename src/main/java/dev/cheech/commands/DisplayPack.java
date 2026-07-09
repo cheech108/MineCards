@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DisplayPack implements TabExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-        if (!PackManager.packExists(args[0])){
+        if (PackManager.packNoExists(args[0])){
             sender.sendMessage("Invalid pack!");
             return false;
         }

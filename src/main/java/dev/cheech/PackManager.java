@@ -89,10 +89,13 @@ public class PackManager {
     public static Map<String, Pack.Rarity> getCards(String packName){
         return packs.get(packName).getRarityMap();
     }
-    public static boolean packExists(String packName){
-        return packs.containsKey(packName);
+    public static boolean packNoExists(String packName){
+        return !packs.containsKey(packName);
     }
     public static String getPackDisplayName(String pN){
         return packs.get(pN).getDisplayName();
+    }
+    public static int getPackSize(String pN){
+        return packs.get(pN).getCardsGiven();
     }
 }
