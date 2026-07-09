@@ -20,6 +20,7 @@ public class PackManager {
     }
 
     public static void initialize(File dF) {
+        packs.clear();
         dataFolder = dF;
         if (!dataFolder.exists()) {boolean created = dataFolder.mkdirs();if (!created){return;}}
         File[] files = dataFolder.listFiles();
@@ -97,5 +98,26 @@ public class PackManager {
     }
     public static int getPackSize(String pN){
         return packs.get(pN).getCardsGiven();
+    }
+    public static List<String> getRarityInOrder(String pN){
+        Pack pack = packs.get(pN);
+        List<String> rarities = pack.getRarities();
+        Map<String, Pack.Rarity> rarityMap = pack.getRarityMap();
+        List<String> ret = new ArrayList<>();
+        List<Double> weights = new ArrayList<>();
+        weights.add(-1.0);
+        for (String i : rarities){
+            double weight = rarityMap.get(i).weight();
+            int y = 0;
+            for (Double x : weights){
+                if (weight > x){
+                    weights.add(y, weight);
+                    ret.add(y,i);
+                    break;
+                }
+                y++;
+            }
+        }
+        return ret;
     }
 }
