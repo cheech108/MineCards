@@ -12,6 +12,7 @@ import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.components.CustomModelDataComponent;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
@@ -32,10 +33,15 @@ public class GivePack implements TabExecutor {
         // 1. Get Meta and Define Key
         ItemMeta meta = itemStack.getItemMeta();
         NamespacedKey key = new NamespacedKey(MineCards.getPluginObj(), "pack_name");
-        // 2. Set Data (e.g., String, Integer, Byte)
+        // 2. Set Data
         meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, args[1]);
         meta.itemName(MiniMessage.miniMessage().deserialize(PackManager.getPackDisplayName(args[1])));
-        // 3. Apply and Give
+        //3. set resource pack
+        CustomModelDataComponent cmdComponent = meta.getCustomModelDataComponent();
+        String textureKey = args[1].toLowerCase() + ":pack";
+        cmdComponent.setStrings(List.of(textureKey));
+        meta.setCustomModelDataComponent(cmdComponent);
+        // 4. Apply and Give
         itemStack.setItemMeta(meta);
         Objects.requireNonNull(Bukkit.getPlayer(args[0])).getInventory().addItem(itemStack);
         return true;

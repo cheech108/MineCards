@@ -25,7 +25,7 @@ public class Pack {
             JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
             this.name = file.getName().substring(0,file.getName().length()-5);
             this.displayName = jsonObject.get("DisplayName").getAsString();
-            this.cardsGiven = jsonObject.get("cardsGiven") != null ? jsonObject.get("cardsGiven").getAsInt() : 3;
+            this.cardsGiven = jsonObject.get("CardsGiven") != null ? jsonObject.get("CardsGiven").getAsInt() : 3;
             JsonObject curRarities = jsonObject.get("Rarities").getAsJsonObject();
             Set<String> nameRarities = curRarities.keySet();
             Type listType = new TypeToken<List<String>>(){}.getType();

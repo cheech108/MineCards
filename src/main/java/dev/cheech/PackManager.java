@@ -3,10 +3,9 @@ package dev.cheech;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.inventory.meta.components.CustomModelDataComponent;
 
 import java.io.*;
 import java.util.*;
@@ -68,8 +67,6 @@ public class PackManager {
         //create item
         ItemStack ret = new ItemStack(Material.PAPER);
         ItemMeta meta = ret.getItemMeta();
-        NamespacedKey key = new NamespacedKey(MineCards.getPluginObj(), "id");
-        meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, pack.getDisplayName()+":"+itemName);
         //make name and roll for shiny
         Component message;
         if (Math.random() < .05){
@@ -84,6 +81,11 @@ public class PackManager {
         Component lore = MiniMessage.miniMessage().deserialize("<white>"+ prefix +" <"+color+">"+rarityName +  " <white>trading card");
         meta.itemName(message);
         meta.lore(List.of(lore));
+        // apply model data if a resource pack is present
+        CustomModelDataComponent cmdComponent = meta.getCustomModelDataComponent();
+        String textureKey = packName.toLowerCase() + ":" + itemName.toLowerCase();
+        cmdComponent.setStrings(List.of(textureKey));
+        meta.setCustomModelDataComponent(cmdComponent);
         ret.setItemMeta(meta);
         return ret;
     }
