@@ -29,6 +29,7 @@ public class PackOpen implements Listener {
         NamespacedKey packKey = new NamespacedKey(MineCards.getPluginObj(), "pack_name");
         NamespacedKey binderKey = new NamespacedKey(MineCards.getPluginObj(), "binder_inv");
         assert item != null;
+        if (!item.hasItemMeta()) return;
         if (item.getItemMeta().getPersistentDataContainer().has(packKey, PersistentDataType.STRING)) {
             // Get the data
             String value = item.getItemMeta().getPersistentDataContainer().get(packKey, PersistentDataType.STRING);
