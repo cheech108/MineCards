@@ -26,11 +26,12 @@ public class PackOpen implements Listener {
             return;
         }
         ItemStack item = event.getItem();
-        NamespacedKey key = new NamespacedKey(MineCards.getPluginObj(), "pack_name");
+        NamespacedKey packKey = new NamespacedKey(MineCards.getPluginObj(), "pack_name");
+        NamespacedKey binderKey = new NamespacedKey(MineCards.getPluginObj(), "binder_inv");
         assert item != null;
-        if (item.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.STRING)) {
+        if (item.getItemMeta().getPersistentDataContainer().has(packKey, PersistentDataType.STRING)) {
             // Get the data
-            String value = item.getItemMeta().getPersistentDataContainer().get(key, PersistentDataType.STRING);
+            String value = item.getItemMeta().getPersistentDataContainer().get(packKey, PersistentDataType.STRING);
             if (PackManager.packNoExists(value)){
                 event.getPlayer().sendMessage("Invalid Pack");
                 return;
@@ -45,6 +46,20 @@ public class PackOpen implements Listener {
                     event.getPlayer().getWorld().dropItem(event.getPlayer().getLocation(),entry.getValue());
                 }
             }
+        }
+        if (item.getItemMeta().getPersistentDataContainer().has(binderKey,PersistentDataType.STRING)){
+            String value = item.getItemMeta().getPersistentDataContainer().get(binderKey, PersistentDataType.STRING);
+            assert value != null;
+            if (value.equals("empty")){
+                assert event.getItem() != null;
+                boolean init = BinderManager.initializeBinder(event.getItem());
+                if (!init){
+                    event.getPlayer().sendMessage("Error, initialize binders one at a time");
+                }
+                return;
+            }
+            event.getPlayer().openInventory(BinderManager.getBinder(value));
+
         }
     }
 }

@@ -19,6 +19,11 @@ commands:
     usage: /givepack [player] [packname]
     permission: minepacks.admin
     permission-message: §cYou do not have permission to execute this command!
+  givebinder:
+    description: gives the player a binder
+    usage: /givepack [player]
+    permission: minepacks.admin
+    permission-message: §cYou do not have permission to execute this command!
   displaypack:
     description: shows the potential contents of a pack to the player
     usage: /givepack [packname]
