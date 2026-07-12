@@ -9,17 +9,20 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.*;
 
+// Class Containing all information pretaining to a pack
 public class Pack {
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public record Rarity(String name, double weight, String color, List<String> drops) {
     }
 
+    // Variable Library
     private final String name;
     private final String displayName;
     private final Map<String, Rarity> rarities = new HashMap<>();
     private final int cardsGiven;
 
+    // Pack Object Constuctor (uses file data as params)
     public Pack(File file){
         try (FileReader reader = new FileReader(file)) {
             JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
@@ -38,6 +41,7 @@ public class Pack {
             throw new RuntimeException(e);
         }
     }
+    // Getter methods for the names and abs.names of the cards
     public String getName(){
         return name;
     }
