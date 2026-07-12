@@ -83,7 +83,7 @@ public class PackManager {
         meta.lore(List.of(lore));
         // apply model data if a resource pack is present
         CustomModelDataComponent cmdComponent = meta.getCustomModelDataComponent();
-        String textureKey = packName.toLowerCase() + ":" + itemName.toLowerCase();
+        String textureKey = packName.toLowerCase() + ":" + itemName.toLowerCase().replace(" ", "");
         cmdComponent.setStrings(List.of(textureKey));
         meta.setCustomModelDataComponent(cmdComponent);
         ret.setItemMeta(meta);
