@@ -1,0 +1,26 @@
+{
+  "DisplayName" : "Nether Pack",
+  "CardsGiven" : 3,
+  "Rarities" : {
+    "common" : {
+      "color" : "#ffffff",
+      "weight" : 60,
+      "drops" : ["Netherrack","Soul Sand","Basalt","Lava","Obsidian","Crimson Wood","Warped Wood","Zombified Piglin","Gold Nugget","Mushroom"]
+    },
+    "rare" : {
+      "color" : "#02a9c7",
+      "weight" : 30,
+      "drops" : ["Glowstone","Piglin","Nether Fortress","Nether Quartz","Hoglin","Blackstone","Soul Soil"]
+    },
+    "epic" : {
+      "color" : "#5704b0",
+      "weight" : 7.5,
+      "drops" : ["Ghast","Nether Portal","Wither Skeleton","Blaze"]
+    },
+    "legendary" : {
+      "color" : "#b08700",
+      "weight" : 2.5,
+      "drops" : ["Piglin Brute","Bastion","Wither"]
+    }
+  }
+}

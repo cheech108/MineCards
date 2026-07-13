@@ -1,0 +1,26 @@
+{
+  "DisplayName" : "Farming Pack",
+  "CardsGiven" : 3,
+  "Rarities" : {
+    "common" : {
+      "color" : "#ffffff",
+      "weight" : 60,
+      "drops" : ["Wheat","Apple","Kelp","Sweet Berries","Pumpkin","Sugar cane","Beetroot","Potato","Carrot","Coco Beans"]
+    },
+    "rare" : {
+      "color" : "#02a9c7",
+      "weight" : 30,
+      "drops" : ["Poisonous Potato","Melon","Mushroom Stew","Glow Berries","Cookie","Honey","Baked Potato"]
+    },
+    "epic" : {
+      "color" : "#5704b0",
+      "weight" : 7.5,
+      "drops" : ["Pumpkin Pie","Chorus Fruit","Suspicious Stew","Glistering Melon"]
+    },
+    "legendary" : {
+      "color" : "#b08700",
+      "weight" : 2.5,
+      "drops" : ["Golden Carrot","Golden Apple","Cake"]
+    }
+  }
+}

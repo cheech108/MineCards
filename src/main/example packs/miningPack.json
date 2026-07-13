@@ -1,0 +1,26 @@
+{
+  "DisplayName" : "Mining Pack",
+  "CardsGiven" : 3,
+  "Rarities" : {
+    "common" : {
+      "color" : "#ffffff",
+      "weight" : 60,
+      "drops" : ["Dirt","Stone","Coal"]
+    },
+    "rare" : {
+      "color" : "#02a9c7",
+      "weight" : 30,
+      "drops" : ["Copper","Iron"]
+    },
+    "epic" : {
+      "color" : "#5704b0",
+      "weight" : 7.5,
+      "drops" : ["Redstone","Gold","Lapis"]
+    },
+    "legendary" : {
+      "color" : "#b08700",
+      "weight" : 2.5,
+      "drops" : ["Diamond","Netherite"]
+    }
+  }
+}
