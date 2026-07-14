@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "#B"
+  ],
+  "key": {
+    "#": "minecraft:paper",
+    "B": "minecraft:book"
+  },
+  "result": {
+    "id": "minecraft:book",
+    "components": {
+      "minecraft:item_model": "chumcards:binder",
+      "minecraft:custom_name": "Card Binder",
+      "minecraft:custom_data": {
+				"PublicBukkitValues": {
+					"minecards:binder_inv": "empty"
+				}
+			}
+    }
+  }
+}

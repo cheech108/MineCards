@@ -17,6 +17,8 @@ for path in root_dir.iterdir():
     if path.is_dir():
         if path.name == 'minecraft':
             continue
+        if path.name == 'chumcards':
+            continue
         read_paths.append(Path(f"./{path}/textures/item"))
         names.append(path.name)
 x=0
@@ -31,11 +33,11 @@ paper_json = {"model": {
 }}
 for path in read_paths:
     for item in path.iterdir():
-        make_model_file(item.name[:-4],name[x])
+        make_model_file(item.name[:-4],names[x])
         paper_json["model"]["cases"].append({"when": f"{names[x]}:{item.name[:-4]}",
         "model": {
           "type": "minecraft:model",
-          "model": f"{name[x]}:item/{item.name[:-4]}"
+          "model": f"{names[x]}:item/{item.name[:-4]}"
         }})
     x += 1
 minecraft_dir = Path("./assets/minecraft/items/paper.json")
