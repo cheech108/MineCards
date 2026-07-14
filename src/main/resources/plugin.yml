@@ -1,6 +1,6 @@
 name: MineCards
 description: $description
-version: 1.0
+version: '${version}'
 
 main: dev.cheech.MineCards
 api-version: '26.1.2'
