@@ -1,6 +1,10 @@
 package dev.cheech;
 
+import dev.cheech.cards.PackManager;
 import dev.cheech.commands.*;
+import dev.cheech.listeners.CloseGui;
+import dev.cheech.listeners.GuiHandler;
+import dev.cheech.listeners.RightClick;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
@@ -12,7 +16,7 @@ public final class MineCards extends JavaPlugin {
     public void onEnable() {
         // Plugin startup/login
         PackManager.initialize(getDataFolder());
-        getServer().getPluginManager().registerEvents(new PackOpen(), this);
+        getServer().getPluginManager().registerEvents(new RightClick(), this);
         getServer().getPluginManager().registerEvents(new GuiHandler(), this);
         getServer().getPluginManager().registerEvents(new CloseGui(), this);
         Objects.requireNonNull(getCommand("givepack")).setExecutor(new GivePack());

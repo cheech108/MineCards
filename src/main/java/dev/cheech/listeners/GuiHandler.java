@@ -1,5 +1,6 @@
-package dev.cheech;
+package dev.cheech.listeners;
 
+import dev.cheech.binders.BinderInventoryHolder;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

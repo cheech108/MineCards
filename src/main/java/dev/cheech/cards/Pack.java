@@ -1,4 +1,4 @@
-package dev.cheech;
+package dev.cheech.cards;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;

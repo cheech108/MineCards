@@ -1,6 +1,6 @@
 package dev.cheech.commands;
 
-import dev.cheech.PackManager;
+import dev.cheech.cards.PackManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,5 +1,8 @@
-package dev.cheech;
+package dev.cheech.listeners;
 
+import dev.cheech.binders.BinderManager;
+import dev.cheech.MineCards;
+import dev.cheech.cards.PackManager;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import org.bukkit.NamespacedKey;
@@ -13,7 +16,7 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class PackOpen implements Listener {
+public class RightClick implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {

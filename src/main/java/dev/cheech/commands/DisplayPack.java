@@ -1,7 +1,7 @@
 package dev.cheech.commands;
 
-import dev.cheech.Pack;
-import dev.cheech.PackManager;
+import dev.cheech.cards.Pack;
+import dev.cheech.cards.PackManager;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

@@ -1,5 +1,6 @@
-package dev.cheech;
+package dev.cheech.binders;
 
+import dev.cheech.MineCards;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;

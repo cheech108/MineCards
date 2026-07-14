@@ -1,4 +1,4 @@
-package dev.cheech;
+package dev.cheech.binders;
 
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
