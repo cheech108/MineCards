@@ -88,7 +88,7 @@ public class PackManager {
         //set version and pack indicator
         NamespacedKey verKey = new NamespacedKey(MineCards.getPluginObj(), "card_version");
         meta.getPersistentDataContainer().set(verKey, PersistentDataType.INTEGER,cardVersion);
-        NamespacedKey packKey = new NamespacedKey(MineCards.getPluginObj(), "pack_name");
+        NamespacedKey packKey = new NamespacedKey(MineCards.getPluginObj(), "origin_pack");
         meta.getPersistentDataContainer().set(packKey, PersistentDataType.STRING,packName);
         // apply model data if a resource pack is present
         CustomModelDataComponent cmdComponent = meta.getCustomModelDataComponent();
@@ -140,7 +140,7 @@ public class PackManager {
         NamespacedKey verKey = new NamespacedKey(MineCards.getPluginObj(), "card_version");
         boolean updated = false;
         if (!meta.getPersistentDataContainer().has(verKey)){
-            NamespacedKey packKey = new NamespacedKey(MineCards.getPluginObj(), "pack_name");
+            NamespacedKey packKey = new NamespacedKey(MineCards.getPluginObj(), "origin_pack");
             String customModelDataComponent = meta.getCustomModelDataComponent().getStrings().getFirst();
             String packName = customModelDataComponent.split(":")[0];
             meta.getPersistentDataContainer().set(packKey, PersistentDataType.STRING,packName);
