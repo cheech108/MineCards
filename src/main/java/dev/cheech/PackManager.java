@@ -3,9 +3,11 @@ package dev.cheech;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.CustomModelDataComponent;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.io.*;
 import java.util.*;
@@ -13,6 +15,7 @@ import java.util.*;
 public class PackManager {
     static File dataFolder;
     private static final Map<String, Pack> packs = new HashMap<>();
+    private static final int cardVersion = 1;
 
     private PackManager() {
         throw new UnsupportedOperationException("Utility class");
@@ -81,6 +84,11 @@ public class PackManager {
         Component lore = MiniMessage.miniMessage().deserialize("<white>"+ prefix +" <"+color+">"+rarityName +  " <white>trading card");
         meta.itemName(message);
         meta.lore(List.of(lore));
+        //set version and pack indicator
+        NamespacedKey verKey = new NamespacedKey(MineCards.getPluginObj(), "card_version");
+        meta.getPersistentDataContainer().set(verKey, PersistentDataType.INTEGER,cardVersion);
+        NamespacedKey packKey = new NamespacedKey(MineCards.getPluginObj(), "pack_name");
+        meta.getPersistentDataContainer().set(packKey, PersistentDataType.STRING,packName);
         // apply model data if a resource pack is present
         CustomModelDataComponent cmdComponent = meta.getCustomModelDataComponent();
         String textureKey = packName.toLowerCase() + ":" + itemName.toLowerCase().replace(" ", "");
@@ -121,5 +129,24 @@ public class PackManager {
             }
         }
         return ret;
+    }
+    public static boolean updateCard(ItemStack card){
+        if (card == null) return false;
+        if (card.getType()!=Material.PAPER || !card.getItemMeta().hasCustomModelDataComponent()){
+            return false;
+        }
+        ItemMeta meta = card.getItemMeta();
+        NamespacedKey verKey = new NamespacedKey(MineCards.getPluginObj(), "card_version");
+        boolean updated = false;
+        if (!meta.getPersistentDataContainer().has(verKey)){
+            NamespacedKey packKey = new NamespacedKey(MineCards.getPluginObj(), "pack_name");
+            String customModelDataComponent = meta.getCustomModelDataComponent().getStrings().getFirst();
+            String packName = customModelDataComponent.split(":")[0];
+            meta.getPersistentDataContainer().set(packKey, PersistentDataType.STRING,packName);
+            meta.getPersistentDataContainer().set(verKey,PersistentDataType.INTEGER,1);
+            card.setItemMeta(meta);
+            updated =  true;
+        }
+        return updated;
     }
 }

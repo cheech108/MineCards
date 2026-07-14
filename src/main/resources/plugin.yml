@@ -32,3 +32,6 @@ commands:
     usage: /reloadpacks
     permission: minepacks.admin
     permission-message: §cYou do not have permission to execute this command!
+  updateinv:
+    description: updates all cards in inventory to the latest version
+    usage: /updateinv
